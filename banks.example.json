@@ -1,0 +1,24 @@
+{
+  "spreadsheet": "我的信用卡帳單",
+  "banks": {
+    "CTBC": {
+      "sender": "ebill@estats.ctbcbank.com",
+      "subject": "信用卡",
+      "keyring_code": "CTBC",
+      "row_label": "CTBC"
+    },
+    "SinoPac": {
+      "sender": "ebillservice@newebill.banksinopac.com.tw",
+      "subject": "電子帳單",
+      "keyring_code": "SinoPac",
+      "row_label": "SinoPac"
+    },
+    "Rakuten": {
+      "sender": "info@card.rakuten.com.tw",
+      "subject": "電子帳單",
+      "keyring_code": "Rakuten",
+      "row_label": "Rakuten",
+      "has_attachment": false
+    }
+  }
+}
