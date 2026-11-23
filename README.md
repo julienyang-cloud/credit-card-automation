@@ -42,8 +42,8 @@ cleanup.py                刪除 downloads\ 與 temp\ 內的敏感檔案
 ## 安裝
 
 ```bash
-git clone <your-repo-url>
-cd credit_card_auto
+git clone https://github.com/julienyang-cloud/credit-card-automation.git
+cd credit-card-automation
 
 python -m venv venv
 venv\Scripts\activate          # macOS / Linux: source venv/bin/activate
