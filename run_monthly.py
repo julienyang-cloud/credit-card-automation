@@ -29,7 +29,7 @@ import config
 
 
 def _log_dir():
-    log_dir = os.path.join(config.BASE_DIR, 'logs')
+    log_dir = getattr(config, 'LOG_DIR', os.path.join(config.BASE_DIR, 'logs'))
     os.makedirs(log_dir, exist_ok=True)
     return log_dir
 

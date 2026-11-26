@@ -82,6 +82,7 @@ def process_cathay(body):
 
     debug_path = os.path.join(config.TEMP_DIR, 'cathay_body.txt')
     with open(debug_path, 'w', encoding='utf-8') as f:
+        f.write(f"# 擷取時間: {datetime.now():%Y-%m-%d %H:%M:%S}\n")
         f.write(body)
     print(f"[Cathay] 內文長度: {len(body)} 字，已存至 {debug_path}")
 
@@ -212,7 +213,7 @@ def main():
     for bank_code, status in summary.items():
         print(f"  {bank_code:20s} {status}")
 
-    # 資料已寫入 Google Sheet，接著刪除所有敏感檔案（PDF、圖片、文字檔）
+    # 資料已寫入 Google Sheet，接著刪除所有敏感檔案與過期日誌
     if config.CLEANUP_AFTER_RUN:
         # 只有「有檔案可檢查」的狀態才保留除錯檔；
         # no mail / no pdf 本來就沒有下載任何檔案，留著名單只會造成誤解。
@@ -224,6 +225,7 @@ def main():
             if keep:
                 print(f"\n以下銀行未成功，保留除錯檔：{', '.join(keep)}")
         cleanup.cleanup_sensitive_files(keep_prefixes=keep)
+        cleanup.cleanup_old_logs()
     else:
         print("\n（CLEANUP_AFTER_RUN=False，保留除錯檔案）")
 

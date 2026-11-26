@@ -9,6 +9,7 @@
 """
 import os
 import re
+from datetime import datetime
 
 import fitz
 import pytesseract
@@ -255,6 +256,7 @@ def extract(pdf_path, bank_code):
         # 保留文字層內容供除錯（與 OCR 銀行一致的檔名）
         with open(os.path.join(config.TEMP_DIR, f'{bank_code}_page_0.txt'),
                   'w', encoding='utf-8') as f:
+            f.write(f'# 擷取時間: {datetime.now():%Y-%m-%d %H:%M:%S}\n')
             f.write('\n'.join(lines))
 
         if rule.get('positional') == 'dbs':
@@ -295,6 +297,7 @@ def extract(pdf_path, bank_code):
 
         with open(os.path.join(config.TEMP_DIR, f'{bank_code}_page_0.txt'),
                   'w', encoding='utf-8') as f:
+            f.write(f'# 擷取時間: {datetime.now():%Y-%m-%d %H:%M:%S}\n')
             f.write(date_text)
             if date_text is not amount_text:
                 f.write('\n--- 金額區塊 ---\n')

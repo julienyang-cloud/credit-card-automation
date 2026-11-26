@@ -219,7 +219,8 @@ Set-ScheduledTask -TaskName "CreditCard_Monthly" -Settings $settings
 - PDF 密碼存在系統 keyring，不寫入檔案、不寫入 log。
 - 附件檔名會過濾路徑字元，避免寫到 `downloads\` 之外。
 - 授權 token 以 JSON 儲存，不使用 `pickle`（避免反序列化風險）。
-- 執行完自動刪除 PDF、圖片、OCR 文字檔。
+- 執行完自動刪除 PDF、圖片、OCR 文字檔；保留的除錯檔（如 `page_0.txt`、`page_0.png`）超過 60 天自動強制清理。
+- 歷史執行日誌（`logs\run_*.log`）加入輪替機制，僅保留最近 120 天，避免財務紀錄無限期留存。
 
 已知限制：
 

@@ -76,12 +76,19 @@ STATEMENT_START, STATEMENT_END = _statement_window()
 # --------------------------------------------------------------------------
 DOWNLOAD_DIR = os.path.join(BASE_DIR, 'downloads')
 TEMP_DIR = os.path.join(BASE_DIR, 'temp')
+LOG_DIR = os.path.join(BASE_DIR, 'logs')
 
 # 執行完（資料已寫入 Google Sheet）後，是否刪除所有敏感檔案
 CLEANUP_AFTER_RUN = True
 
 # 若某家銀行標記 need review / no detect，保留該家的除錯檔（page_0.txt 等）
 KEEP_DEBUG_ON_REVIEW = True
+
+# 保留的除錯檔案（need review / no detect）最長保存天數，超過強制刪除
+DEBUG_RETENTION_DAYS = 60
+
+# 日誌檔案保留天數（超過自動清理，避免財務歷史記錄無限累積）
+LOG_RETENTION_DAYS = 120
 
 # 視為敏感、必須刪除的副檔名（帳單 PDF、轉出的圖片、OCR 文字檔）
 SENSITIVE_EXTENSIONS = ('.pdf', '.png', '.jpg', '.jpeg', '.txt', '.pickle')
@@ -113,3 +120,4 @@ TESSERACT_CMD = _detect_tesseract()
 # 確保目錄存在
 os.makedirs(DOWNLOAD_DIR, exist_ok=True)
 os.makedirs(TEMP_DIR, exist_ok=True)
+os.makedirs(LOG_DIR, exist_ok=True)
